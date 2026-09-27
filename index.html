@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ahmed Hanafi | Data Analyst</title>
+
+    <meta name="description"
+          content="Ahmed Hanafi - Junior Data Analyst Portfolio. SQL, Excel, Power BI, Tableau and Python projects.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b1120;
+            color: #e5e7eb;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 17, 32, 0.95);
+            border-bottom: 1px solid #1e293b;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 80px);
+            line-height: 1.05;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            font-size: 18px;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 22px;
+            border-radius: 8px;
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn.primary {
+            background: #38bdf8;
+            color: #0b1120;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.85;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 45px;
+        }
+
+        .section-title span {
+            color: #38bdf8;
+        }
+
+        /* ABOUT */
+
+        .about-text {
+            max-width: 800px;
+            color: #94a3b8;
+            font-size: 17px;
+        }
+
+        /* SKILLS */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        .skill-card {
+            background: #111827;
+            border: 1px solid #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 10px;
+            color: #38bdf8;
+        }
+
+        .skill-card p {
+            color: #94a3b8;
+        }
+
+        /* PROJECTS */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 14px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            border-color: #38bdf8;
+        }
+
+        .project-image {
+            height: 180px;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+
+        .tools {
+            color: #38bdf8;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        /* RESUME */
+
+        .resume-box {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 14px;
+            padding: 35px;
+            max-width: 700px;
+        }
+
+        .resume-box h3 {
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        .resume-box p {
+            color: #94a3b8;
+            margin-bottom: 25px;
+        }
+
+        /* CONTACT */
+
+        .contact-box {
+            text-align: center;
+            background: #111827;
+            border: 1px solid #1e293b;
+            padding: 50px 25px;
+            border-radius: 14px;
+        }
+
+        .contact-box p {
+            color: #94a3b8;
+            margin: 10px 0 25px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: #38bdf8;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #1e293b;
+            color: #64748b;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .nav-container {
+                height: auto;
+                padding: 18px 0;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                font-size: 14px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                min-height: 80vh;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero h2 {
+                font-size: 22px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="container nav-container">
+
+        <div class="logo">
+            Ahmed Hanafi
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<!-- HOME -->
+
+<section id="home" class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <h1>
+                Ahmed <span>Hanafi</span>
+            </h1>
+
+            <h2>
+                Junior Data Analyst
+            </h2>
+
+            <p>
+                I turn raw and complex data into clear, actionable insights
+                that help businesses understand performance, identify trends,
+                and make better decisions.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#projects" class="btn primary">
+                    View My Projects
+                </a>
+
+                <a href="#contact" class="btn">
+                    Contact Me
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            About <span>Me</span>
+        </h2>
+
+        <p class="about-text">
+
+            I am a Junior Data Analyst with hands-on experience in data
+            cleaning, SQL analysis, dashboard development, and data
+            visualization.
+
+            <br><br>
+
+            I enjoy working with raw data, identifying meaningful patterns,
+            and transforming complex information into clear and useful
+            business insights.
+
+            <br><br>
+
+            My current toolkit includes SQL, Excel, Power BI, Tableau,
+            and Python, which I use across practical data analysis projects.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            My <span>Skills</span>
+        </h2>
+
+        <div class="skills-grid">
+
+            <div class="skill-card">
+                <h3>SQL</h3>
+                <p>
+                    Data querying, aggregation, CTEs, subqueries,
+                    window functions and analytical views.
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Excel</h3>
+                <p>
+                    Data cleaning, formulas, analysis and dashboards.
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Power BI</h3>
+                <p>
+                    Data modeling, DAX, Power Query and interactive dashboards.
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Tableau</h3>
+                <p>
+                    Interactive visualization and business dashboards.
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Python</h3>
+                <p>
+                    Data analysis, cleaning and exploration using Python.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Featured <span>Projects</span>
+        </h2>
+
+        <div class="projects-grid">
+
+
+            <!-- FOOTBALL -->
+
+            <div class="project-card">
+
+                <div class="project-image">
+                    Football Dashboard
+                </div>
+
+                <div class="project-content">
+
+                    <h3>
+                        Football Analytics
+                    </h3>
+
+                    <p>
+                        An end-to-end football analytics project analyzing
+                        team performance, player quality, squad value,
+                        budgets and league statistics.
+                    </p>
+
+                    <div class="tools">
+                        SQL Server • Power BI • Mockaroo
+                    </div>
+
+                    <a href="#" class="btn">
+                        View Project
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- CANYON -->
+
+            <div class="project-card">
+
+                <div class="project-image">
+                    Canyon Bicycles Dashboard
+                </div>
+
+                <div class="project-content">
+
+                    <h3>
+                        Canyon Bicycles Sales
+                    </h3>
+
+                    <p>
+                        Executive sales dashboard analyzing sales performance,
+                        revenue, products and key business KPIs.
+                    </p>
+
+                    <div class="tools">
+                        Power BI • Excel
+                    </div>
+
+                    <a href="#" class="btn">
+                        View Project
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- CALL CENTER -->
+
+            <div class="project-card">
+
+                <div class="project-image">
+                    Call Center Dashboard
+                </div>
+
+                <div class="project-content">
+
+                    <h3>
+                        Call Center Performance
+                    </h3>
+
+                    <p>
+                        Interactive dashboard analyzing inbound calls,
+                        answered calls, abandonment, resolution rate,
+                        response time and customer satisfaction.
+                    </p>
+
+                    <div class="tools">
+                        Power BI
+                    </div>
+
+                    <a href="#" class="btn">
+                        View Project
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLEAU -->
+
+            <div class="project-card">
+
+                <div class="project-image">
+                    Tableau Dashboard
+                </div>
+
+                <div class="project-content">
+
+                    <h3>
+                        Tableau Analytics
+                    </h3>
+
+                    <p>
+                        Interactive Tableau dashboard designed to explore
+                        business performance and communicate insights clearly.
+                    </p>
+
+                    <div class="tools">
+                        Tableau • Data Visualization
+                    </div>
+
+                    <a href="#" class="btn">
+                        View Project
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PYTHON -->
+
+            <div class="project-card">
+
+                <div class="project-image">
+                    Python Data Analysis
+                </div>
+
+                <div class="project-content">
+
+                    <h3>
+                        Python Data Analysis
+                    </h3>
+
+                    <p>
+                        Data exploration, cleaning and analysis using Python
+                        to identify patterns and generate useful insights.
+                    </p>
+
+                    <div class="tools">
+                        Python • Pandas
+                    </div>
+
+                    <a href="#" class="btn">
+                        View Project
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- RESUME -->
+
+<section id="resume">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            My <span>Resume</span>
+        </h2>
+
+        <div class="resume-box">
+
+            <h3>
+                Ahmed Hanafi
+            </h3>
+
+            <p>
+                Junior Data Analyst specializing in SQL, Excel,
+                Power BI, Tableau and Python.
+            </p>
+
+            <!-- Replace the # below with your CV link later -->
+
+            <a href="#" class="btn primary">
+                Download CV
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <div class="container">
+
+        <div class="contact-box">
+
+            <h2 class="section-title">
+                Let's <span>Connect</span>
+            </h2>
+
+            <p>
+                Interested in working together or discussing
+                a data analytics project?
+            </p>
+
+            <div class="contact-links">
+
+                <a href="mailto:alhnfy277@gmail.com">
+                    Email
+                </a>
+
+                <a href="https://www.linkedin.com/in/ahmed-hanafi-957736424/"
+                   target="_blank">
+                    LinkedIn
+                </a>
+
+                <a href="https://github.com/ahmed-hanafi-05"
+                   target="_blank">
+                    GitHub
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 Ahmed Hanafi. All rights reserved.
+
+</footer>
+
+</body>
+</html>
