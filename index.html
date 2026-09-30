@@ -208,6 +208,43 @@
             border-color: #38bdf8;
         }
 
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .filter-btn {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid #1e293b;
+            background: #111827;
+            color: #cbd5e1;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #38bdf8;
+            border-color: #38bdf8;
+            color: #0b1120;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .project-card.hidden {
+            display: none;
+        }
+
         .project-image {
             height: 180px;
             background: #1e293b;
@@ -216,6 +253,117 @@
             justify-content: center;
             color: #64748b;
             font-size: 16px;
+        }
+
+        .project-carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            z-index: 1;
+            width: 32px;
+            height: 32px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(11, 17, 32, 0.85);
+            color: #e5e7eb;
+            cursor: pointer;
+            font-size: 22px;
+            line-height: 1;
+            transform: translateY(-50%);
+        }
+
+        .carousel-control:hover {
+            background: #38bdf8;
+            color: #0b1120;
+        }
+
+        .carousel-control.previous { left: 10px; }
+        .carousel-control.next { right: 10px; }
+
+        .carousel-page {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(11, 17, 32, 0.85);
+            color: #e5e7eb;
+            font-size: 12px;
+        }
+
+        .project-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(3, 7, 18, 0.88);
+        }
+
+        .project-modal.open { display: flex; }
+
+        .modal-content {
+            position: relative;
+            width: min(1100px, 100%);
+            max-height: 90vh;
+            padding: 14px;
+            border: 1px solid #334155;
+            border-radius: 14px;
+            background: #111827;
+        }
+
+        .modal-image {
+            display: block;
+            width: 100%;
+            max-height: calc(90vh - 28px);
+            object-fit: contain;
+        }
+
+        .modal-close,
+        .modal-control {
+            position: absolute;
+            z-index: 1;
+            border: 0;
+            cursor: pointer;
+            color: #e5e7eb;
+            background: rgba(11, 17, 32, 0.9);
+        }
+
+        .modal-close {
+            top: 24px;
+            right: 24px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 24px;
+        }
+
+        .modal-control {
+            top: 50%;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 28px;
+            transform: translateY(-50%);
+        }
+
+        .modal-control.previous { left: 26px; }
+        .modal-control.next { right: 26px; }
+        .modal-control:hover, .modal-close:hover { background: #38bdf8; color: #0b1120; }
+
+        @media (max-width: 700px) {
+            .project-modal { padding: 12px; }
+            .modal-content { padding: 8px; }
+            .modal-control.previous { left: 16px; }
+            .modal-control.next { right: 16px; }
+            .modal-close { top: 18px; right: 18px; }
         }
 
         .project-content {
@@ -494,168 +642,183 @@
             Featured <span>Projects</span>
         </h2>
 
+        <div class="project-filters">
+            <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+            <button class="filter-btn" onclick="filterProjects('powerbi', this)">Power BI</button>
+            <button class="filter-btn" onclick="filterProjects('sql', this)">SQL</button>
+            <button class="filter-btn" onclick="filterProjects('excel', this)">Excel</button>
+            <button class="filter-btn" onclick="filterProjects('tableau', this)">Tableau</button>
+        </div>
+
         <div class="projects-grid">
 
-
             <!-- FOOTBALL -->
-
-            <div class="project-card">
-
+            <div class="project-card" data-tools="sql powerbi">
                 <div class="project-image">
-                    Football Dashboard
-                </div>
-
-                <div class="project-content">
-
-                    <h3>
-                        Football Analytics
-                    </h3>
-
-                    <p>
-                        An end-to-end football analytics project analyzing
-                        team performance, player quality, squad value,
-                        budgets and league statistics.
-                    </p>
-
-                    <div class="tools">
-                        SQL Server • Power BI • Mockaroo
+                    <div class="project-carousel" data-images="assets/football-1.png|assets/football-2.png|assets/football-3.png" data-alt="Football Teams Analysis Dashboard">
+                        <img src="assets/football-1.png" alt="Football Teams Analysis Dashboard - page 1">
+                        <button class="carousel-control previous" type="button" aria-label="Previous dashboard page" onclick="changeSlide(this, -1)">&#8249;</button>
+                        <button class="carousel-control next" type="button" aria-label="Next dashboard page" onclick="changeSlide(this, 1)">&#8250;</button>
+                        <span class="carousel-page">1 / 3</span>
                     </div>
-
-                    <a href="#" class="btn">
-                        View Project
-                    </a>
-
                 </div>
-
+                <div class="project-content">
+                    <h3>Football Analytics Dashboard</h3>
+                    <p>
+                        An end-to-end football analytics project analyzing team performance,
+                        player quality, squad value, budgets and league statistics.
+                    </p>
+                    <div class="tools">SQL Server • Power BI • Mockaroo</div>
+                    <button class="btn" type="button" onclick="openProject(this)">View Project</button>
+                </div>
             </div>
 
+            <!-- BIKE STORE -->
+            <div class="project-card" data-tools="sql powerbi">
+                <div class="project-image">
+                    <div class="project-carousel" data-images="assets/bike-store-1.png|assets/bike-store-2.png|assets/bike-store-3.png" data-alt="Bike Store Sales Analysis Dashboard">
+                        <img src="assets/bike-store-1.png" alt="Bike Store Sales Analysis Dashboard - page 1">
+                        <button class="carousel-control previous" type="button" aria-label="Previous dashboard page" onclick="changeSlide(this, -1)">&#8249;</button>
+                        <button class="carousel-control next" type="button" aria-label="Next dashboard page" onclick="changeSlide(this, 1)">&#8250;</button>
+                        <span class="carousel-page">1 / 3</span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3>Bike Store Sales Analysis</h3>
+                    <p>
+                        Sales analysis project using SQL and Power BI to explore sales
+                        performance, products, customers and business trends.
+                    </p>
+                    <div class="tools">SQL Server • Power BI</div>
+                    <button class="btn" type="button" onclick="openProject(this)">View Project</button>
+                </div>
+            </div>
+
+            <!-- UDEMY -->
+            <div class="project-card" data-tools="powerbi">
+                <div class="project-image">
+                    <div class="project-carousel" data-images="assets/udemy-1.png|assets/udemy-2.png|assets/udemy-3.png" data-alt="Udemy Courses Performance Analysis">
+                        <img src="assets/udemy-1.png" alt="Udemy Courses Performance Analysis - page 1">
+                        <button class="carousel-control previous" type="button" aria-label="Previous dashboard page" onclick="changeSlide(this, -1)">&#8249;</button>
+                        <button class="carousel-control next" type="button" aria-label="Next dashboard page" onclick="changeSlide(this, 1)">&#8250;</button>
+                        <span class="carousel-page">1 / 3</span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3>Udemy Courses Performance Analysis</h3>
+                    <p>
+                        Interactive analysis of course performance, engagement and
+                        key metrics to identify patterns across Udemy courses.
+                    </p>
+                    <div class="tools">Power BI</div>
+                    <button class="btn" type="button" onclick="openProject(this)">View Project</button>
+                </div>
+            </div>
 
             <!-- CANYON -->
-
-            <div class="project-card">
-
+            <div class="project-card" data-tools="powerbi">
                 <div class="project-image">
-                    Canyon Bicycles Dashboard
-                </div>
-
-                <div class="project-content">
-
-                    <h3>
-                        Canyon Bicycles Sales
-                    </h3>
-
-                    <p>
-                        Executive sales dashboard analyzing sales performance,
-                        revenue, products and key business KPIs.
-                    </p>
-
-                    <div class="tools">
-                        Power BI • Excel
+                    <div class="project-carousel" data-images="assets/canyon-1.png|assets/canyon-2.png|assets/canyon-3.png" data-alt="Canyon Bikes Sales Performance Analysis">
+                        <img src="assets/canyon-1.png" alt="Canyon Bikes Sales Performance Analysis - page 1">
+                        <button class="carousel-control previous" type="button" aria-label="Previous dashboard page" onclick="changeSlide(this, -1)">&#8249;</button>
+                        <button class="carousel-control next" type="button" aria-label="Next dashboard page" onclick="changeSlide(this, 1)">&#8250;</button>
+                        <span class="carousel-page">1 / 3</span>
                     </div>
-
-                    <a href="#" class="btn">
-                        View Project
-                    </a>
-
                 </div>
-
+                <div class="project-content">
+                    <h3>Canyon Bikes Sales Performance Analysis</h3>
+                    <p>
+                        Executive sales analysis covering revenue, products,
+                        customers and key business performance indicators.
+                    </p>
+                    <div class="tools">Power BI</div>
+                    <button class="btn" type="button" onclick="openProject(this)">View Project</button>
+                </div>
             </div>
-
 
             <!-- CALL CENTER -->
-
-            <div class="project-card">
-
+            <div class="project-card" data-tools="powerbi">
                 <div class="project-image">
-                    Call Center Dashboard
-                </div>
-
-                <div class="project-content">
-
-                    <h3>
-                        Call Center Performance
-                    </h3>
-
-                    <p>
-                        Interactive dashboard analyzing inbound calls,
-                        answered calls, abandonment, resolution rate,
-                        response time and customer satisfaction.
-                    </p>
-
-                    <div class="tools">
-                        Power BI
+                    <div class="project-carousel" data-images="assets/call-center-1.png|assets/call-center-2.png|assets/call-center-3.png" data-alt="Call Center Performance Dashboard">
+                        <img src="assets/call-center-1.png" alt="Call Center Performance Dashboard - page 1">
+                        <button class="carousel-control previous" type="button" aria-label="Previous dashboard page" onclick="changeSlide(this, -1)">&#8249;</button>
+                        <button class="carousel-control next" type="button" aria-label="Next dashboard page" onclick="changeSlide(this, 1)">&#8250;</button>
+                        <span class="carousel-page">1 / 3</span>
                     </div>
-
-                    <a href="#" class="btn">
-                        View Project
-                    </a>
-
                 </div>
-
+                <div class="project-content">
+                    <h3>Call Center Performance Dashboard</h3>
+                    <p>
+                        Interactive dashboard analyzing inbound calls, answered calls,
+                        abandonment, resolution rate, response time and satisfaction.
+                    </p>
+                    <div class="tools">Power BI</div>
+                    <button class="btn" type="button" onclick="openProject(this)">View Project</button>
+                </div>
             </div>
 
+            <!-- VIRINDA -->
+            <div class="project-card" data-tools="excel">
+                <div class="project-image">
+                    <img src="assets/virinda.png" alt="Virinda Sales Analysis Dashboard">
+                </div>
+                <div class="project-content">
+                    <h3>Virinda Sales Analysis Dashboard</h3>
+                    <p>
+                        Excel dashboard analyzing sales performance, customer trends
+                        and key business metrics.
+                    </p>
+                    <div class="tools">Excel</div>
+                    <button class="btn" type="button" onclick="openProject(this)">View Project</button>
+                </div>
+            </div>
+
+            <!-- EMPLOYEES -->
+            <div class="project-card" data-tools="excel">
+                <div class="project-image">
+                    <img src="assets/employees.png" alt="Employees Analytics Dashboard">
+                </div>
+                <div class="project-content">
+                    <h3>Employees Analytics Dashboard</h3>
+                    <p>
+                        Excel-based employee analytics dashboard exploring workforce
+                        data and key employee metrics.
+                    </p>
+                    <div class="tools">Excel</div>
+                    <button class="btn" type="button" onclick="openProject(this)">View Project</button>
+                </div>
+            </div>
+
+            <!-- MALL OF INDIA -->
+            <div class="project-card" data-tools="excel">
+                <div class="project-image">
+                    <img src="assets/mall-india.png" alt="Mall of India Sales Analysis">
+                </div>
+                <div class="project-content">
+                    <h3>Mall of India Sales Analysis</h3>
+                    <p>
+                        Excel analysis of sales performance, customer behavior
+                        and business trends across the dataset.
+                    </p>
+                    <div class="tools">Excel</div>
+                    <button class="btn" type="button" onclick="openProject(this)">View Project</button>
+                </div>
+            </div>
 
             <!-- TABLEAU -->
-
-            <div class="project-card">
-
+            <div class="project-card" data-tools="tableau">
                 <div class="project-image">
-                    Tableau Dashboard
+                    <img src="assets/sales-performance.png" alt="Sales Performance Dashboard">
                 </div>
-
                 <div class="project-content">
-
-                    <h3>
-                        Tableau Analytics
-                    </h3>
-
+                    <h3>Sales Performance Dashboard</h3>
                     <p>
-                        Interactive Tableau dashboard designed to explore
-                        business performance and communicate insights clearly.
+                        Interactive Tableau dashboard designed to explore sales
+                        performance and communicate business insights clearly.
                     </p>
-
-                    <div class="tools">
-                        Tableau • Data Visualization
-                    </div>
-
-                    <a href="#" class="btn">
-                        View Project
-                    </a>
-
+                    <div class="tools">Tableau</div>
+                    <button class="btn" type="button" onclick="openProject(this)">View Project</button>
                 </div>
-
-            </div>
-
-
-            <!-- PYTHON -->
-
-            <div class="project-card">
-
-                <div class="project-image">
-                    Python Data Analysis
-                </div>
-
-                <div class="project-content">
-
-                    <h3>
-                        Python Data Analysis
-                    </h3>
-
-                    <p>
-                        Data exploration, cleaning and analysis using Python
-                        to identify patterns and generate useful insights.
-                    </p>
-
-                    <div class="tools">
-                        Python • Pandas
-                    </div>
-
-                    <a href="#" class="btn">
-                        View Project
-                    </a>
-
-                </div>
-
             </div>
 
         </div>
@@ -663,6 +826,86 @@
     </div>
 
 </section>
+
+<script>
+function filterProjects(tool, button) {
+    const cards = document.querySelectorAll('.project-card');
+    const buttons = document.querySelectorAll('.filter-btn');
+
+    buttons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    cards.forEach(card => {
+        if (tool === 'all' || card.dataset.tools.includes(tool)) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+}
+
+function changeSlide(button, direction) {
+    const carousel = button.closest('.project-carousel');
+    const images = carousel.dataset.images.split('|');
+    const image = carousel.querySelector('img');
+    const page = carousel.querySelector('.carousel-page');
+    const current = images.indexOf(image.getAttribute('src'));
+    const next = (current + direction + images.length) % images.length;
+
+    image.src = images[next];
+    image.alt = `${carousel.dataset.alt} - page ${next + 1}`;
+    page.textContent = `${next + 1} / ${images.length}`;
+}
+
+let modalImages = [];
+let modalIndex = 0;
+
+function openProject(button) {
+    const card = button.closest('.project-card');
+    const carousel = card.querySelector('.project-carousel');
+    const image = card.querySelector('.project-image img');
+
+    modalImages = carousel ? carousel.dataset.images.split('|') : [image.src];
+    modalIndex = Math.max(0, modalImages.indexOf(image.getAttribute('src')));
+    document.getElementById('project-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    updateModal();
+}
+
+function updateModal() {
+    const image = document.getElementById('modal-image');
+    const controls = document.querySelectorAll('.modal-control');
+    image.src = modalImages[modalIndex];
+    image.alt = `Project image ${modalIndex + 1}`;
+    controls.forEach(control => control.style.display = modalImages.length > 1 ? 'block' : 'none');
+}
+
+function changeModalSlide(direction) {
+    modalIndex = (modalIndex + direction + modalImages.length) % modalImages.length;
+    updateModal();
+}
+
+function closeProject() {
+    document.getElementById('project-modal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', event => {
+    if (!document.getElementById('project-modal').classList.contains('open')) return;
+    if (event.key === 'Escape') closeProject();
+    if (event.key === 'ArrowLeft') changeModalSlide(-1);
+    if (event.key === 'ArrowRight') changeModalSlide(1);
+});
+</script>
+
+<div id="project-modal" class="project-modal" role="dialog" aria-modal="true" aria-label="Project image gallery" onclick="if (event.target === this) closeProject()">
+    <div class="modal-content">
+        <img id="modal-image" class="modal-image" src="" alt="">
+        <button class="modal-close" type="button" aria-label="Close gallery" onclick="closeProject()">&times;</button>
+        <button class="modal-control previous" type="button" aria-label="Previous image" onclick="changeModalSlide(-1)">&#8249;</button>
+        <button class="modal-control next" type="button" aria-label="Next image" onclick="changeModalSlide(1)">&#8250;</button>
+    </div>
+</div>
 
 
 <!-- RESUME -->
@@ -686,9 +929,7 @@
                 Power BI, Tableau and Python.
             </p>
 
-            <!-- Replace the # below with your CV link later -->
-
-            <a href="#" class="btn primary">
+            <a href="assets/Ahmed_Hanafi_Resume.pdf" class="btn primary" download>
                 Download CV
             </a>
 
